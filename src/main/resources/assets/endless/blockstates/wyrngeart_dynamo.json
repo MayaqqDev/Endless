@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "generating=false": { "model": "endless:block/wyrngeart_dynamo" },
+    "generating=true": { "model": "endless:block/wyrngeart_dynamo_on" }
+  }
+}
+

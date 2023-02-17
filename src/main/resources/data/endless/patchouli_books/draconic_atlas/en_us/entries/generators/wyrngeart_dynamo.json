@@ -1,0 +1,15 @@
+{
+  "name": "Wyrngeart Dynamo",
+  "icon": "endless:wyrngeart_dynamo",
+  "sortnum": 0,
+  "category": "endless:generators_category",
+  "pages": [
+    {
+      "type": "patchouli:multiblock",
+      "name": "Wyrngeart Dynamo",
+      "multiblock_id": "endless:wyrngeart_dynamo_structure",
+      "enable_visualize": true,
+      "text": "The first structure is very simple, just place the generator and the dragon egg, and you can start generating!"
+    }
+  ]
+}

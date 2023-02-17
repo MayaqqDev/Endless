@@ -1,29 +1,38 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "endless",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Endless",
+  "description": "Discover the mysteries of the End dimension like never before in \"Endless\"! Explore new lands, find hidden secrets, and unravel the unknown as you embark on an adventure like no other. ",
   "authors": [
-    "Me!"
+    "Mayaqq"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://mayaqq.dev",
+    "sources": "https://github.com/MayaqqDev/Endless"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/endless/icon.png",
 
   "environment": "*",
   "entrypoints": {
+    "terrablender": [
+      "dev.mayaqq.endless.entrypoints.Terrablender"
+    ],
+    "fabric-datagen": [
+      "dev.mayaqq.endless.datagen.EndlessDatagen"
+    ],
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "dev.mayaqq.endless.Endless"
+    ],
+    "client": [
+      "dev.mayaqq.endless.EndlessClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "endless.mixins.json"
   ],
 
   "depends": {

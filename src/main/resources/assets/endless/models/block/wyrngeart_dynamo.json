@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "endless:block/wyrngeart_dynamo_side",
+    "north": "endless:block/wyrngeart_dynamo_side",
+    "south": "endless:block/wyrngeart_dynamo_side",
+    "east": "endless:block/wyrngeart_dynamo_side",
+    "west": "endless:block/wyrngeart_dynamo_side",
+    "up": "endless:block/wyrngeart_dynamo_top",
+    "down": "endless:block/wyrngeart_dynamo_bottom"
+  }
+}

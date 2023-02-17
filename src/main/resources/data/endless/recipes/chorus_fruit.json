@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "endless:chorus_string"
+    },
+    {
+      "item": "endless:chorus_string"
+    },
+    {
+      "item": "endless:chorus_string"
+    },
+    {
+      "item": "endless:chorus_string"
+    }
+  ],
+  "result": {
+    "item": "minecraft:chorus_fruit",
+    "count": 1
+  }
+}
