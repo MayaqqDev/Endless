@@ -19,6 +19,9 @@
     ],
     "main": [
       "dev.mayaqq.endless.Endless"
+    ],
+    "fabric-datagen": [
+      "dev.mayaqq.endless.datagen.DataGeneration"
     ]
   },
   "mixins": [

@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "got_first_cutscene": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/sculk_catalyst_top.png",
+    "description": {
+      "translate": "advancements.endless.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:debug_stick"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.endless.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_first_cutscene"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

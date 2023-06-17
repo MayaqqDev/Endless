@@ -1,0 +1,38 @@
+{
+  "parent": "endless:root",
+  "criteria": {
+    "got_egg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dragon_egg"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.endless.the_next_generation.description"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:dragon_egg"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.endless.the_next_generation.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_egg"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,12 @@
+{
+  "category.endless": "Endless",
+    "key.endless.cutscene": "Continue Cutscene",
+
+  "advancements.endless.root.title": "Endless",
+    "advancements.endless.root.description": "Welcome to Endless!",
+  "advancements.endless.click_egg.title": "Not this way...",
+    "advancements.endless.click_egg.description": "Try to click the Dragon Egg and learn that you can't.",
+  "advancements.endless.the_next_generation.title": "The Next Generation",
+    "advancements.endless.the_next_generation.description": "Hold the Dragon Egg"
+}
+
