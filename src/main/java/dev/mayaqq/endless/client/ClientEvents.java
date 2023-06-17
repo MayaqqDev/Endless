@@ -16,6 +16,7 @@ public class ClientEvents {
     static int cutScenePhase = 0;
 
     static int renderTick = 0;
+    static int duration = 0;
     static ArrayList<String> cutSceneBuffer = new ArrayList<>();
     static String text = "";
     static int textPhase = 0;
@@ -45,6 +46,7 @@ public class ClientEvents {
                 cutSceneInProgress = true;
             }
             if (cutSceneInProgress) {
+                duration++;
                 renderTick++;
                 if (renderTick == 10) {
                     renderTick = 0;
@@ -90,7 +92,8 @@ public class ClientEvents {
                 RenderSystem.disableDepthTest();
 
                 client.getFramebuffer().endWrite();
-                if (cutScenePhase == 1) {
+                if (cutScenePhase == 1 || duration > 1000) {
+                    duration = 0;
                     cutSceneBuffer.remove(0);
                     cutSceneInProgress = false;
                     cutScenePhase = 0;
