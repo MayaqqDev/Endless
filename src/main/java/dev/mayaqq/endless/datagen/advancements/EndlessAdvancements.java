@@ -1,7 +1,9 @@
 package dev.mayaqq.endless.datagen.advancements;
 
+import dev.mayaqq.endless.utils.advancement.AdvancementGottenCriterion;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
+import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.ImpossibleCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.Items;
@@ -9,6 +11,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
+
+import static dev.mayaqq.endless.Endless.id;
 
 public class EndlessAdvancements implements Consumer<Consumer<Advancement>> {
     @Override
@@ -41,6 +45,10 @@ public class EndlessAdvancements implements Consumer<Consumer<Advancement>> {
                 false,
                 false,
                 true
-        ).criterion("got_egg", InventoryChangedCriterion.Conditions.items(Items.DRAGON_EGG)).parent(rootAdvancement).build(consumer, "endless:the_next_generation");
+        )
+                .criterion("got_egg", InventoryChangedCriterion.Conditions.items(Items.DRAGON_EGG))
+                .criterion("gotten_previous", AdvancementGottenCriterion.create(rootAdvancement.getId()))
+                .parent(rootAdvancement)
+                .rewards(AdvancementRewards.Builder.loot(id("advancement_reward/dragon_egg"))).build(consumer, "endless:the_next_generation");
     }
 }

@@ -16,6 +16,7 @@ public class ServerEvents {
             Endless.SERVER_DATA_PATH = Path.of(server.getSavePath(WorldSavePath.ROOT) + "/" + MOD_ID);
             VoidItemsStorage.init();
             ServerState.getServerState(server);
+            Endless.SERVER = server;
         });
     }
 }

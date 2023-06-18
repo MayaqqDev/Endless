@@ -3,7 +3,7 @@ package dev.mayaqq.endless.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.mayaqq.endless.Endless;
-import dev.mayaqq.endless.api.VoidItemGsonSerializer;
+import dev.mayaqq.endless.utils.gson.VoidItemGsonSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.StringNbtReader;
 import net.minecraft.registry.Registries;

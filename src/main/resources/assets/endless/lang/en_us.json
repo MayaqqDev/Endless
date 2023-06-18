@@ -7,6 +7,11 @@
   "advancements.endless.click_egg.title": "Not this way...",
     "advancements.endless.click_egg.description": "Try to click the Dragon Egg and learn that you can't.",
   "advancements.endless.the_next_generation.title": "The Next Generation",
-    "advancements.endless.the_next_generation.description": "Hold the Dragon Egg"
+    "advancements.endless.the_next_generation.description": "Hold the Dragon Egg",
+
+  "text.config.endless-config.title": "Endless Config",
+    "text.config.endless-config.section.Client": "Client",
+      "text.config.endless-config.option.cutSceneTextCentered": "Move Cutscene Text to Center",
+    "text.config.endless-config.section.Server": "Server"
 }
 

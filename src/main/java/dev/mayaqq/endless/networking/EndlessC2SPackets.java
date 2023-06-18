@@ -1,6 +1,6 @@
 package dev.mayaqq.endless.networking;
 
-public class C2S {
+public class EndlessC2SPackets {
     public static void register() {
     }
 }

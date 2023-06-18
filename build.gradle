@@ -1,13 +1,15 @@
 plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
+    // modrinth publishing
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 version = project.mod_version
 group = project.maven_group
 
 repositories {
-    // modrinth maven
+    // revelationary
     exclusiveContent {
         forRepository {
             maven {
@@ -19,11 +21,11 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
-    // gekolib maven
+    // gekolib
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-    // lavender
+    // lavender, owo-lib
     maven { url 'https://maven.wispforest.io' }
-    // dev auth
+    // devAuth
     maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
 }
 
@@ -42,11 +44,17 @@ dependencies {
     modImplementation ("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")
         // Revelationary
     //modImplementation ("maven.modrinth:revelationary:${project.revelationary_version}")
-        // Lavender
+        // Owo-lib
+    annotationProcessor modImplementation ("io.wispforest:owo-lib:${project.owo_version}")
+    include ("io.wispforest:owo-sentinel:${project.owo_version}")
+    // Lavender
     include modImplementation ("io.wispforest:lavender:${project.lavender_version}")
+        // ModMenu
+    modImplementation ("maven.modrinth:modmenu:${project.modmenu_version}")
 
+    // Dev Stuff
         // DevAuth
-    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
+    modRuntimeOnly ("me.djtheredstoner:DevAuth-fabric:${project.devauth_version}")
 }
 
 processResources {
@@ -64,10 +72,6 @@ processResources {
 
 def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
     it.options.encoding = "UTF-8"
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         it.options.release = targetJavaVersion
@@ -80,9 +84,6 @@ java {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
     archivesBaseName = project.archives_base_name
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
     withSourcesJar()
 }
 
@@ -99,21 +100,12 @@ publishing {
             from components.java
         }
     }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
     }
 }
 
 loom {
     runs {
-        //
-        // This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"
-        //
         datagenClient {
             inherit client
             name "Data Generation"
@@ -125,10 +117,6 @@ loom {
         }
     }
 }
-
-//
-// Adds the generated files into the jar you distribute to players.
-//
 sourceSets {
     main {
         resources {
@@ -137,4 +125,40 @@ sourceSets {
             ]
         }
     }
+}
+
+import com.modrinth.minotaur.dependencies.ModDependency
+
+modrinth {
+    String tokenString = ""
+    try {
+        tokenString = providers.environmentVariable('MODRINTH_TOKEN').get()
+    } catch (Exception e) {
+        println("Modrinth token not found in environment variables")
+    }
+    if (tokenString != "") {
+        token = tokenString
+    }
+    projectId = project.project_id // The ID of your Modrinth project. Slugs will not work.
+    versionNumber = project.mod_version // The (preferably SemVer) version of the mod. If not specified, it'll use the `version` declaration
+    versionName = "${project.archivesBaseName}-${project.mod_version}" // The version title. If not specified, it'll use the version number
+    uploadFile = remapJar // Tells Minotaur to use the remapped jar
+    gameVersions = [project.minecraft_version] // An array of game versions the version supports
+    loaders = ['fabric', 'quilt'] // Self-explanatory.
+    dependencies = [
+            // Fabric API
+            new ModDependency('P7dR8mSH', 'required'),
+            // Revelationary
+            new ModDependency('eXrl5E3G', 'required'),
+            // Geckolib
+            new ModDependency('8BmcQJ2H', 'required'),
+            // owo-lib
+            new ModDependency('ccKDOlHs', 'required'),
+            // Lavender
+            // TODO: Add lavender
+            // ModMenu
+            new ModDependency('mOgUt4GM', 'required')
+
+
+    ]
 }

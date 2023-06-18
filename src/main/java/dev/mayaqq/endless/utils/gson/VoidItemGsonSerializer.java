@@ -1,4 +1,4 @@
-package dev.mayaqq.endless.api;
+package dev.mayaqq.endless.utils.gson;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

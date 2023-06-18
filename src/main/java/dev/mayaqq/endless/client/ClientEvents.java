@@ -1,6 +1,7 @@
 package dev.mayaqq.endless.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import dev.mayaqq.endless.Endless;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -77,7 +78,12 @@ public class ClientEvents {
                         textPhase++;
                     }
                 }
-                matrices.drawCenteredTextWithShadow(textRenderer, text, windowWidth / 2, windowHeight / 2 - 20, white);
+                if (Endless.CONFIG.cutSceneTextCentered()) {
+                    matrices.drawCenteredTextWithShadow(textRenderer, text, windowWidth / 2, windowHeight / 2 - 20, white);
+                } else {
+                    int center = windowWidth / 2 - textRenderer.getWidth(fullText) / 2;
+                    matrices.drawText(textRenderer, text, center, windowHeight / 2 - 20, white, true);
+                }
                 String pressText = "Press " + KeybindRegistry.cutscene.getBoundKeyLocalizedText().getString() + " to continue";
                 matrices.drawText(
                         textRenderer,

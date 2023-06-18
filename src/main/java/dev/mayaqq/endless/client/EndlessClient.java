@@ -1,6 +1,7 @@
 package dev.mayaqq.endless.client;
 
-import dev.mayaqq.endless.networking.S2C;
+import dev.mayaqq.endless.client.rendering.FluidRenderer;
+import dev.mayaqq.endless.networking.EndlessS2CPackets;
 import net.fabricmc.api.ClientModInitializer;
 
 public class EndlessClient implements ClientModInitializer {
@@ -8,6 +9,7 @@ public class EndlessClient implements ClientModInitializer {
     public void onInitializeClient() {
         ClientEvents.init();
         KeybindRegistry.register();
-        S2C.register();
+        EndlessS2CPackets.register();
+        FluidRenderer.register();
     }
 }

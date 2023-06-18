@@ -1,12 +1,11 @@
 package dev.mayaqq.endless.mixin;
 
 import dev.mayaqq.endless.networking.PacketMethods;
-import dev.mayaqq.endless.registry.ItemRegistry;
-import dev.mayaqq.endless.utils.AdvancementUtils;
+import dev.mayaqq.endless.registry.EndlessItems;
+import dev.mayaqq.endless.utils.advancement.AdvancementUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.DragonEggBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,7 +26,7 @@ import static dev.mayaqq.endless.Endless.id;
 public class DragonEggBlockMixin {
     @Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
     private void endless$onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (!world.isClient && player.getMainHandStack().getItem() == ItemRegistry.ENDER_WRENCH) {
+        if (!world.isClient && player.getMainHandStack().getItem() == EndlessItems.ENDER_WRENCH) {
             cir.setReturnValue(ActionResult.success(false));
         }
         sendCutscene(player, world);

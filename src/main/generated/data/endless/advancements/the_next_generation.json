@@ -34,5 +34,10 @@
       "got_egg"
     ]
   ],
+  "rewards": {
+    "loot": [
+      "endless:advancement_reward/dragon_egg"
+    ]
+  },
   "sends_telemetry_event": true
 }

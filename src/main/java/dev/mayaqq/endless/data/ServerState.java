@@ -21,7 +21,6 @@ public class ServerState extends PersistentState {
         players.forEach((UUID, playerSate) -> {
             NbtCompound playerStateNbt = new NbtCompound();
 
-            playerStateNbt.putBoolean("hasKilledDragon", playerSate.hasKilledDragon);
 
             playersNbtCompound.put(String.valueOf(UUID), playerStateNbt);
         });
@@ -37,7 +36,6 @@ public class ServerState extends PersistentState {
         playersTag.getKeys().forEach(key -> {
             PlayerState playerState = new PlayerState();
 
-            playerState.hasKilledDragon = playersTag.getCompound(key).getBoolean("hasKilledDragon");
 
             UUID uuid = UUID.fromString(key);
             serverState.players.put(uuid, playerState);
@@ -69,6 +67,5 @@ public class ServerState extends PersistentState {
         return serverState.players.computeIfAbsent(player.getUuid(), uuid -> new PlayerState());
     }
     public static class PlayerState {
-        public boolean hasKilledDragon = false;
     }
 }

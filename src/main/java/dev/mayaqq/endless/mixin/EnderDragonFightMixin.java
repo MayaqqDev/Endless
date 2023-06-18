@@ -1,16 +1,12 @@
 package dev.mayaqq.endless.mixin;
 
-import dev.mayaqq.endless.Endless;
 import dev.mayaqq.endless.networking.PacketMethods;
-import dev.mayaqq.endless.utils.AdvancementUtils;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import dev.mayaqq.endless.utils.advancement.AdvancementUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;

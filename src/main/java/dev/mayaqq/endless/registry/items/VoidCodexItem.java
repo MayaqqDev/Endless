@@ -1,4 +1,4 @@
-package dev.mayaqq.endless.items;
+package dev.mayaqq.endless.registry.items;
 
 import io.wispforest.lavender.book.BookItem;
 

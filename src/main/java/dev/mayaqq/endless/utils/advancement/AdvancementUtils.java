@@ -1,4 +1,4 @@
-package dev.mayaqq.endless.utils;
+package dev.mayaqq.endless.utils.advancement;
 
 import dev.mayaqq.endless.Endless;
 import net.minecraft.advancement.Advancement;
