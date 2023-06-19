@@ -9,8 +9,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
-public class ChorusPlantRootPlacedFeature extends Feature<ChorusPlantRootFeatureConfig> {
-    public ChorusPlantRootPlacedFeature(Codec<ChorusPlantRootFeatureConfig> configCodec) {
+public class ChorusPlantRootFeature extends Feature<ChorusPlantRootFeatureConfig> {
+    public ChorusPlantRootFeature(Codec<ChorusPlantRootFeatureConfig> configCodec) {
         super(configCodec);
     }
 
