@@ -16,16 +16,21 @@ public class TotalCappedEndergyStorage implements EndergyStorage {
         this.currentTotal = 0;
     }
     public static @Nullable TotalCappedEndergyStorage fromNbt(@NotNull NbtCompound compound) {
-        if (compound.contains("MaxEnergy", NbtElement.LONG_TYPE)) {
-            long maxEnergyTotal = compound.getLong("MaxEnergy");
-            return new TotalCappedEndergyStorage(maxEnergyTotal);
+        if (compound.contains("MaxEndergy", NbtElement.LONG_TYPE)) {
+            long maxEnergyTotal = compound.getLong("MaxEndergy");
+            TotalCappedEndergyStorage storage = new TotalCappedEndergyStorage(maxEnergyTotal);
+            if (compound.contains("Endergy", NbtElement.LONG_TYPE)) {
+                storage.storedEnergy = compound.getLong("Endergy");
+            }
+            return storage;
         }
         return null;
     }
 
     public NbtCompound toNbt() {
         NbtCompound compound = new NbtCompound();
-        compound.putLong("MaxEnergy", this.maxEnergy);
+        compound.putLong("MaxEndergy", this.maxEnergy);
+        compound.putLong("Endergy", this.storedEnergy);
         return compound;
     }
 

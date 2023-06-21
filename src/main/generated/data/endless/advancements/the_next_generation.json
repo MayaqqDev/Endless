@@ -12,6 +12,12 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "gotten_previous": {
+      "conditions": {
+        "advancement_identifier": "endless:root"
+      },
+      "trigger": "revelationary:advancement_gotten"
     }
   },
   "display": {
@@ -32,12 +38,10 @@
   "requirements": [
     [
       "got_egg"
+    ],
+    [
+      "gotten_previous"
     ]
   ],
-  "rewards": {
-    "loot": [
-      "endless:advancement_reward/dragon_egg"
-    ]
-  },
   "sends_telemetry_event": true
 }

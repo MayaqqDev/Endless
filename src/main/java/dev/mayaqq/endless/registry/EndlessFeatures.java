@@ -18,6 +18,6 @@ public class EndlessFeatures {
         Registry.register(Registries.FEATURE, CHORUS_PLANT_ROOT, CHORUS_PLANT_ROOT_FEATURE);
     
         // example code to make the chorus roots placed feature generate in all end biomes
-        BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_DECORATION, CHORUS_PLANT_ROOT_PLACED_FEATURE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.tag(EndlessTags.HAS_CHORUS_ROOTS), GenerationStep.Feature.UNDERGROUND_DECORATION, CHORUS_PLANT_ROOT_PLACED_FEATURE_KEY);
     }
 }

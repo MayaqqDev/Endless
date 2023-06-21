@@ -1,0 +1,38 @@
+{
+  "parent": "endless:the_next_generation",
+  "criteria": {
+    "generated_endergy": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "conditions": {
+        "advancement_identifier": "endless:the_next_generation"
+      },
+      "trigger": "revelationary:advancement_gotten"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.endless.generate_endergy.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "endless:egg_base_generator"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.endless.generate_endergy.title"
+    }
+  },
+  "requirements": [
+    [
+      "generated_endergy"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,5 +1,6 @@
 package dev.mayaqq.endless.registry;
 
+import dev.mayaqq.endless.registry.blocks.VoidFluidBlock;
 import dev.mayaqq.endless.registry.fluids.VoidFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -22,7 +23,7 @@ public class EndlessFluids {
         STILL_VOID_FLUID = Registry.register(Registries.FLUID, id("void_fluid"), new VoidFluid.Still());
         FLOWING_VOID_FLUID = Registry.register(Registries.FLUID, id("flowing_void_fluid"), new VoidFluid.Flowing());
         VOID_FLUID_BUCKET = Registry.register(Registries.ITEM, id("void_fluid_bucket"), new BucketItem(STILL_VOID_FLUID, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
-        VOID_FLUID = Registry.register(Registries.BLOCK, id("void_fluid"), new FluidBlock(STILL_VOID_FLUID, Block.Settings.copy(Blocks.WATER)));
+        VOID_FLUID = Registry.register(Registries.BLOCK, id("void_fluid"), new VoidFluidBlock(STILL_VOID_FLUID, Block.Settings.copy(Blocks.WATER)));
 
     }
 }

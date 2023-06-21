@@ -1,6 +1,8 @@
 package dev.mayaqq.endless.datagen.advancements;
 
-import dev.mayaqq.endless.utils.advancement.AdvancementGottenCriterion;
+import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
+import dev.mayaqq.endless.registry.EndlessBlocks;
+import dev.mayaqq.endless.registry.EndlessItems;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
@@ -17,10 +19,10 @@ import static dev.mayaqq.endless.Endless.id;
 public class EndlessAdvancements implements Consumer<Consumer<Advancement>> {
     @Override
     public void accept(Consumer<Advancement> consumer) {
-        Advancement rootAdvancement = Advancement.Builder.create().display(Items.DEBUG_STICK, // The display icon
+        Advancement rootAdvancement = Advancement.Builder.create().display(EndlessBlocks.CHORUS_PLANT_ROOT, // The display icon
                 Text.translatable("advancements.endless.root.title"), // The title
                 Text.translatable("advancements.endless.root.description"), // The description
-                new Identifier("textures/block/sculk_catalyst_top.png"), // Background image used
+                id("textures/block/chorus_plant_root.png"), // Background image used
                 AdvancementFrame.TASK, // Options: TASK, CHALLENGE, GOAL
                 true, // Show toast top right
                 true, // Announce to chat
@@ -49,6 +51,34 @@ public class EndlessAdvancements implements Consumer<Consumer<Advancement>> {
                 .criterion("got_egg", InventoryChangedCriterion.Conditions.items(Items.DRAGON_EGG))
                 .criterion("gotten_previous", AdvancementGottenCriterion.create(rootAdvancement.getId()))
                 .parent(rootAdvancement)
-                .rewards(AdvancementRewards.Builder.loot(id("advancement_reward/dragon_egg"))).build(consumer, "endless:the_next_generation");
+                .build(consumer, "endless:the_next_generation");
+
+        Advancement openedCodex = Advancement.Builder.create().display(EndlessItems.VOID_CODEX,
+                Text.translatable("advancements.endless.opened_codex.title"),
+                Text.translatable("advancements.endless.opened_codex.description"),
+                null,
+                AdvancementFrame.TASK,
+                true,
+                true,
+                false
+        )
+                .criterion("opened_codex", InventoryChangedCriterion.Conditions.items(Items.BOOK))
+                .criterion("gotten_previous", AdvancementGottenCriterion.create(rootAdvancement.getId()))
+                .parent(rootAdvancement)
+                .build(consumer, "endless:open_codex");
+
+        Advancement generateEndergy = Advancement.Builder.create().display(EndlessBlocks.EGG_BASE_GENERATOR,
+                Text.translatable("advancements.endless.generate_endergy.title"),
+                Text.translatable("advancements.endless.generate_endergy.description"),
+                null,
+                AdvancementFrame.TASK,
+                true,
+                true,
+                false
+        )
+                .criterion("generated_endergy", new ImpossibleCriterion.Conditions())
+                .criterion("gotten_previous", AdvancementGottenCriterion.create(theNextGeneration.getId()))
+                .parent(theNextGeneration)
+                .build(consumer, "endless:generate_endergy");
     }
 }

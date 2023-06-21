@@ -29,6 +29,7 @@ public class Endless implements ModInitializer {
         EndlessFeatures.register();
         EndlessFluids.register();
         EndlessScreenHandlerTypes.register();
+        EndlessTags.register();
     }
 
     public static Identifier id(String path) {

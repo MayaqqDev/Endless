@@ -11,7 +11,7 @@
     "repo": "https://github.com/MayaqqDev/Endless"
   },
   "license": "LGPL-3.0",
-  "icon": "assets/endless/icon.png",
+  "icon": "assets/endless/mod/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -21,7 +21,7 @@
       "dev.mayaqq.endless.Endless"
     ],
     "fabric-datagen": [
-      "dev.mayaqq.endless.datagen.DataGeneration"
+      "dev.mayaqq.endless.datagen.EndlessDataGeneration"
     ]
   },
   "mixins": [
@@ -30,6 +30,15 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": ">=${minecraft_version}",
+    "geckolib": ">=${geckolib_fabric_version}",
+    "revelationary": ">=${revelationary_version}",
+    "lavender" : ">=${lavender_version}",
+    "owo": ">=${owo_version}"
+  },
+  "suggests": {
+    "rei": ">=${rei_version}",
+    "modmenu": ">=${modmenu_version}"
   }
+
 }

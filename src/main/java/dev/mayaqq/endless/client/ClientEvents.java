@@ -3,13 +3,19 @@ package dev.mayaqq.endless.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.mayaqq.endless.Endless;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
+
+import static dev.mayaqq.endless.Endless.id;
 
 public class ClientEvents {
 
@@ -23,6 +29,7 @@ public class ClientEvents {
     static int textPhase = 0;
     static boolean shouldContinue = true;
     static String fullText = "";
+    static Identifier cutscene;
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -33,6 +40,7 @@ public class ClientEvents {
                 text = "";
                 textPhase = 0;
                 shouldContinue = true;
+                sendDonePacket();
             }
             if (client.options.hudHidden && cutSceneInProgress) {
                 client.options.hudHidden = false;
@@ -106,12 +114,23 @@ public class ClientEvents {
                     text = "";
                     textPhase = 0;
                     shouldContinue = true;
+                    sendDonePacket();
                 }
             }
         });
     }
 
-    public static void renderTextCutScene(String text) {
-        cutSceneBuffer.add(text);
+    public static void renderTextCutScene(String text, Identifier id) {
+        if (Endless.CONFIG.showCutScenes()) {
+            cutSceneBuffer.add(text);
+            cutscene = id;
+        }
+    }
+    public static void sendDonePacket() {
+        if (cutSceneBuffer.isEmpty()) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeIdentifier(cutscene);
+            ClientPlayNetworking.send(id("cutscene_done"), buf);
+        }
     }
 }

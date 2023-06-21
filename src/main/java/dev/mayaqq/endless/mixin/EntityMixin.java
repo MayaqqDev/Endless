@@ -1,6 +1,7 @@
 package dev.mayaqq.endless.mixin;
 
 import dev.mayaqq.endless.data.VoidItemsStorage;
+import dev.mayaqq.endless.interfaces.EntityExtension;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
-public class EntityMixin {
+public abstract class EntityMixin implements EntityExtension {
+    @Shadow protected abstract void tickInVoid();
+
     @Inject(method = "tickInVoid", at = @At("HEAD"))
     private void tickInVoid(CallbackInfo ci) {
         Entity entity = (Entity) (Object) this;
@@ -28,5 +31,10 @@ public class EntityMixin {
             VoidItemsStorage.DATA.items.add(item);
             VoidItemsStorage.save();
         }
+    }
+
+    @Override
+    public void tickEntityVoid() {
+        this.tickInVoid();
     }
 }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "endless:block/chorus_plant_root_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "endless:block/chorus_plant_root"
+    },
+    "axis=z": {
+      "model": "endless:block/chorus_plant_root_horizontal",
+      "x": 90
+    }
+  }
+}

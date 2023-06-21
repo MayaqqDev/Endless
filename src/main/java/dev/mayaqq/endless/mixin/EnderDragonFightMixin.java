@@ -1,13 +1,14 @@
 package dev.mayaqq.endless.mixin;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import dev.mayaqq.endless.networking.PacketMethods;
-import dev.mayaqq.endless.utils.advancement.AdvancementUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
@@ -36,10 +37,10 @@ public class EnderDragonFightMixin {
         AtomicBoolean hasAdvancement = new AtomicBoolean(true);
         if (!this.world.isClient) {
             this.world.getServer().getPlayerManager().getPlayerList().forEach(player -> {
-                if (player.getWorld().getRegistryKey() == World.END && !AdvancementUtils.hasAdvancement(player, id("root"))) {
+                if (player.getWorld().getRegistryKey() == World.END && !AdvancementHelper.hasAdvancement(player, id("root"))) {
                     hasAdvancement.set(false);
-                    PacketMethods.showCutscene(player, "The Dragon egg seems to be emitting a strange energy...");
-                    PacketMethods.showCutscene(player, "You should probably check it out...");
+                    PacketMethods.showCutscene(player, Text.translatable("cutscene.endless.egg_reminder"), id("egg_reminder"));
+                    PacketMethods.showCutscene(player, Text.translatable("cutscene.endless.egg_reminder2"), id("egg_reminder"));
                     PlayerAdvancementTracker advancementTracker = player.getAdvancementTracker();
                     Advancement advancement = this.world.getServer().getAdvancementLoader().get(id("root"));
                     advancementTracker.grantCriterion(advancement, "got_first_cutscene");

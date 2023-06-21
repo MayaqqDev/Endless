@@ -2,7 +2,6 @@ package dev.mayaqq.endless.registry.blockEntities;
 
 import dev.mayaqq.endless.energy.storage.EndergyStorageBlockEntity;
 import dev.mayaqq.endless.energy.storage.TotalCappedEndergyStorage;
-import dev.mayaqq.endless.interfaces.PlayerOwned;
 import dev.mayaqq.endless.registry.EndlessBlockEntities;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -36,7 +35,7 @@ import java.util.UUID;
 
 import static dev.mayaqq.endless.Endless.id;
 
-public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, PlayerOwned, EndergyStorageBlockEntity<TotalCappedEndergyStorage> {
+public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, EndergyStorageBlockEntity<TotalCappedEndergyStorage> {
 
     public static final int INVENTORY_SIZE = 2;
     public static final int INPUT_SLOT_ID = 0;
@@ -124,16 +123,6 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
     }
 
     @Override
-    public UUID getOwnerUUID() {
-        return this.ownerUUID;
-    }
-
-    @Override
-    public void setOwner(PlayerEntity playerEntity) {
-        this.ownerUUID = playerEntity.getUuid();
-    }
-
-    @Override
     public TotalCappedEndergyStorage getEnergyStorage() {
         return this.endergyStorage;
     }
@@ -201,7 +190,4 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
     public void updateInClientWorld() {
         world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
     }
-
-
-
 }

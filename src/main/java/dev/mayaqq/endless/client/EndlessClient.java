@@ -1,5 +1,6 @@
 package dev.mayaqq.endless.client;
 
+import dev.mayaqq.endless.client.registry.EndlessModels;
 import dev.mayaqq.endless.client.rendering.FluidRenderer;
 import dev.mayaqq.endless.networking.EndlessS2CPackets;
 import net.fabricmc.api.ClientModInitializer;
@@ -11,5 +12,6 @@ public class EndlessClient implements ClientModInitializer {
         KeybindRegistry.register();
         EndlessS2CPackets.register();
         FluidRenderer.register();
+        EndlessModels.register();
     }
 }

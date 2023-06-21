@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "endless:block/chorus_plant_root_top",
+    "side": "endless:block/chorus_plant_root"
+  }
+}

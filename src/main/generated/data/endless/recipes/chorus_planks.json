@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "endless:chorus_plant_root"
+    }
+  ],
+  "result": {
+    "item": "endless:chorus_planks"
+  }
+}

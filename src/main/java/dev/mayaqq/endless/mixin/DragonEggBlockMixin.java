@@ -1,14 +1,14 @@
 package dev.mayaqq.endless.mixin;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import dev.mayaqq.endless.networking.PacketMethods;
-import dev.mayaqq.endless.registry.EndlessItems;
-import dev.mayaqq.endless.utils.advancement.AdvancementUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DragonEggBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -26,9 +26,6 @@ import static dev.mayaqq.endless.Endless.id;
 public class DragonEggBlockMixin {
     @Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
     private void endless$onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (!world.isClient && player.getMainHandStack().getItem() == EndlessItems.ENDER_WRENCH) {
-            cir.setReturnValue(ActionResult.success(false));
-        }
         sendCutscene(player, world);
     }
     @Inject(method = "onBlockBreakStart", at = @At("HEAD"))
@@ -36,9 +33,9 @@ public class DragonEggBlockMixin {
         sendCutscene(player, world);
     }
     private void sendCutscene(PlayerEntity undefinedPlayer, World world) {
-        if (!world.isClient && !AdvancementUtils.hasAdvancement(undefinedPlayer, id("click_egg"))) {
+        if (!world.isClient && !AdvancementHelper.hasAdvancement(undefinedPlayer, id("click_egg"))) {
             ServerPlayerEntity player = (ServerPlayerEntity) undefinedPlayer;
-            PacketMethods.showCutscene(player, "You need to find a different way to get it...");
+            PacketMethods.showCutscene(player, Text.translatable("cutscene.endless.click_egg"), id("click_egg"));
             PlayerAdvancementTracker advancementTracker = player.getAdvancementTracker();
             Advancement advancement = world.getServer().getAdvancementLoader().get(id("click_egg"));
             advancementTracker.grantCriterion(advancement, "clicked_egg");

@@ -1,0 +1,45 @@
+{
+  "keys": {
+    "a": "minecraft:air",
+    "r": "endless:chorus_plant_root"
+  },
+  "layers": [
+    [
+      "aaa",
+      "raa",
+      "aaa"
+    ],
+    [
+      "aaa",
+      "raa",
+      "aaa"
+    ],
+    [
+      "aaa",
+      "raa",
+      "aaa"
+    ],
+    [
+      "aaa",
+      "ara",
+      "aaa"
+    ],    [
+      "aaa",
+      "ara",
+      "aaa"
+    ],
+    [
+      "aaa",
+      "aaa",
+      "ara"
+    ],    [
+      "aaa",
+      "aaa",
+      "ara"
+    ],    [
+      "aaa",
+      "aaa",
+      "ara"
+    ]
+  ]
+}

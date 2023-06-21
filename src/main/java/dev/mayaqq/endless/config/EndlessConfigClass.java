@@ -10,4 +10,5 @@ import io.wispforest.owo.config.annotation.SectionHeader;
 public class EndlessConfigClass {
     @SectionHeader("Client")
     public boolean cutSceneTextCentered = true;
+    public boolean showCutScenes = true;
 }

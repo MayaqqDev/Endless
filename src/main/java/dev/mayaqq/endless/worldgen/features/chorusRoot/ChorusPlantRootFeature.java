@@ -1,10 +1,14 @@
 package dev.mayaqq.endless.worldgen.features.chorusRoot;
 
 import com.mojang.serialization.Codec;
+import dev.mayaqq.endless.Endless;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.ChorusPlantFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
@@ -26,23 +30,22 @@ public class ChorusPlantRootFeature extends Feature<ChorusPlantRootFeatureConfig
 
         size -= random.nextInt(3);
 
-        pos = pos.up();
-
-        for (int i = 0; i < size; i++) {
-            BlockPos blockPos = pos.down();
-            if (random.nextInt(3) == 1) {
-                int randomNumber = random.nextInt(9);
-                if (randomNumber < 4) {
-                    switch (randomNumber) {
-                        case 0 -> blockPos = blockPos.north();
-                        case 1 -> blockPos = blockPos.south();
-                        case 2 -> blockPos = blockPos.east();
-                        case 3 -> blockPos = blockPos.west();
+        if (world.getBlockState(pos.up()) == Blocks.END_STONE.getDefaultState()) {
+            pos = pos.up();
+            for (int i = 0; i < size; i++) {
+                pos = pos.down();
+                if (random.nextInt(5) % 5 == 0) {
+                    switch (random.nextInt(3)) {
+                        case 0 -> pos = pos.offset(Direction.NORTH);
+                        case 1 -> pos = pos.offset(Direction.EAST);
+                        case 2 -> pos = pos.offset(Direction.SOUTH);
+                        case 3 -> pos = pos.offset(Direction.WEST);
                     }
                 }
-            }
-            if (world.isAir(blockPos) || world.getBlockState(blockPos).getBlock() == Blocks.END_STONE) {
-                world.setBlockState(blockPos, provider.get(random, pos), 1);
+                BlockPos blockPos = pos;
+                if (world.isAir(blockPos) || world.getBlockState(blockPos).getBlock() == Blocks.END_STONE) {
+                    world.setBlockState(blockPos, provider.get(random, pos), 1);
+                }
             }
         }
         return true;

@@ -52,7 +52,6 @@ public class MakeshiftVoidExtractorBlock extends BlockWithEntity {
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof MakeshiftVoidExtractorBlockEntity makeshiftVoidExtractorBlockEntity) {
-            makeshiftVoidExtractorBlockEntity.setOwner(player);
             player.openHandledScreen(makeshiftVoidExtractorBlockEntity);
         }
     }

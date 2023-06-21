@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "": { "model": "endless:block/egg_base_generator" }
+  }
+}
+

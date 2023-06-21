@@ -25,6 +25,8 @@ repositories {
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     // lavender, owo-lib
     maven { url 'https://maven.wispforest.io' }
+    // rei
+    maven { url "https://maven.shedaniel.me/" }
     // devAuth
     maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
 }
@@ -43,14 +45,19 @@ dependencies {
         // Geckolib
     modImplementation ("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")
         // Revelationary
-    //modImplementation ("maven.modrinth:revelationary:${project.revelationary_version}")
+    modImplementation ("maven.modrinth:revelationary:${project.revelationary_version}")
         // Owo-lib
     annotationProcessor modImplementation ("io.wispforest:owo-lib:${project.owo_version}")
     include ("io.wispforest:owo-sentinel:${project.owo_version}")
-    // Lavender
+        // Lavender
     include modImplementation ("io.wispforest:lavender:${project.lavender_version}")
-        // ModMenu
-    modImplementation ("maven.modrinth:modmenu:${project.modmenu_version}")
+
+    // Optional dependencies.
+        // REI
+    //modLocalRuntime ("me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version")
+        modLocalRuntime ("maven.modrinth:architectury-api:${project.architectury_version}")
+        // Modmenu
+    modRuntimeOnly ("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Dev Stuff
         // DevAuth
@@ -66,7 +73,13 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "geckolib_fabric_version": project.geckolib_fabric_version,
+                "revelationary_version": project.revelationary_version,
+                "owo_version": project.owo_version,
+                "lavender_version": project.lavender_version,
+                "rei_version": project.rei_version,
+                "modmenu_version": project.modmenu_version
     }
 }
 

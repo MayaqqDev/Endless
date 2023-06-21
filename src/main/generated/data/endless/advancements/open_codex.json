@@ -1,0 +1,47 @@
+{
+  "parent": "endless:root",
+  "criteria": {
+    "gotten_previous": {
+      "conditions": {
+        "advancement_identifier": "endless:root"
+      },
+      "trigger": "revelationary:advancement_gotten"
+    },
+    "opened_codex": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:book"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.endless.opened_codex.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "endless:void_codex"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.endless.opened_codex.title"
+    }
+  },
+  "requirements": [
+    [
+      "opened_codex"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

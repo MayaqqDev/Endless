@@ -9,21 +9,27 @@
       "height": {
         "type": "minecraft:uniform",
         "min_inclusive": {
-          "absolute": 10
+          "absolute": 0
         },
         "max_inclusive": {
-          "absolute": 20
+          "absolute": 30
         }
       }
     },
     {
       "type": "minecraft:count",
       "count": {
-        "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": 0,
-          "max_inclusive": 3
-        }
+        "type": "minecraft:weighted_list",
+        "distribution": [
+          {
+            "weight": 1,
+            "data": 1
+          },
+          {
+            "weight": 1,
+            "data": 0
+          }
+        ]
       }
     },
     {
@@ -35,7 +41,7 @@
         "type": "minecraft:uniform",
         "value": {
           "min_inclusive": 0,
-          "max_inclusive": 8
+          "max_inclusive": 10
         }
       },
       "y_spread": 0
