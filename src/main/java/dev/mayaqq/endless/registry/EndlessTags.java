@@ -10,5 +10,7 @@ import static dev.mayaqq.endless.Endless.id;
 public class EndlessTags {
     public static final TagKey<Biome> HAS_CHORUS_ROOTS = TagKey.of(RegistryKeys.BIOME, id("has_chorus_roots"));
     public static final TagKey<Block> VOID_REPLACEABLE = TagKey.of(RegistryKeys.BLOCK, id("void_replaceable"));
+    public static final TagKey<Block> ENDERGY_EXTRACTABLE = TagKey.of(RegistryKeys.BLOCK, id("endergy_extractable"));
+
     public static void register() {}
 }

@@ -1,7 +1,6 @@
 package dev.mayaqq.endless.registry.blockEntities;
 
-import dev.mayaqq.endless.energy.storage.EndergyStorageBlockEntity;
-import dev.mayaqq.endless.energy.storage.TotalCappedEndergyStorage;
+import dev.mayaqq.endless.energy.storage.EndergyUser;
 import dev.mayaqq.endless.registry.EndlessBlockEntities;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -13,12 +12,10 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -35,13 +32,12 @@ import java.util.UUID;
 
 import static dev.mayaqq.endless.Endless.id;
 
-public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, EndergyStorageBlockEntity<TotalCappedEndergyStorage> {
+public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, EndergyUser {
 
     public static final int INVENTORY_SIZE = 2;
     public static final int INPUT_SLOT_ID = 0;
     public static final int OUTPUT_SLOT_ID = 1;
     public DefaultedList<ItemStack> inventory;
-    protected TotalCappedEndergyStorage endergyStorage;
     protected boolean paused;
     protected boolean endergyDirty;
     private UUID ownerUUID;
@@ -49,7 +45,6 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
     public MakeshiftVoidExtractorBlockEntity(BlockPos pos, BlockState state) {
         super(EndlessBlockEntities.MAKESHIFT_VOID_EXTRACTOR_ENTITY, pos, state);
         this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-        this.endergyStorage = new TotalCappedEndergyStorage(1000);
     }
 
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
@@ -87,9 +82,6 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
         if (!this.deserializeLootTable(nbt)) {
             Inventories.readNbt(nbt, this.inventory);
         }
-        if (nbt.contains("EnergyStorage", NbtElement.COMPOUND_TYPE)) {
-            this.endergyStorage = TotalCappedEndergyStorage.fromNbt(nbt.getCompound("EnergyStorage"));
-        }
         if (nbt.contains("OwnerUUID")) {
             this.ownerUUID = nbt.getUuid("OwnerUUID");
         } else {
@@ -105,7 +97,6 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
         if (!this.serializeLootTable(nbt)) {
             Inventories.writeNbt(nbt, this.inventory);
         }
-        nbt.put("EnergyStorage", this.endergyStorage.toNbt());
         if (this.ownerUUID != null) {
             nbt.putUuid("OwnerUUID", this.ownerUUID);
         }
@@ -120,21 +111,6 @@ public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEnt
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
         //return new MakeshiftVoidExtractorScreenHandler(syncId, playerInventory, this.pos);
         return null;
-    }
-
-    @Override
-    public TotalCappedEndergyStorage getEnergyStorage() {
-        return this.endergyStorage;
-    }
-
-    @Override
-    public void setEndergyDirty() {
-        this.endergyDirty = true;
-    }
-
-    @Override
-    public boolean getEndergyDirty() {
-        return this.endergyDirty;
     }
 
     @Override

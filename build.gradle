@@ -9,7 +9,7 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    // revelationary
+    // revelationary, Modmenu
     exclusiveContent {
         forRepository {
             maven {
@@ -29,6 +29,11 @@ repositories {
     maven { url "https://maven.shedaniel.me/" }
     // devAuth
     maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
+    // Terraform wood api
+    maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/'
+    }
 }
 
 dependencies {
@@ -51,6 +56,8 @@ dependencies {
     include ("io.wispforest:owo-sentinel:${project.owo_version}")
         // Lavender
     include modImplementation ("io.wispforest:lavender:${project.lavender_version}")
+        // Terraform wood api
+    include modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}")
 
     // Optional dependencies.
         // REI
