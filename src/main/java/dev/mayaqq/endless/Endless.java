@@ -13,15 +13,15 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 
 public class Endless implements ModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("Endless");
     public static final String MOD_ID = "endless";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static Path SERVER_DATA_PATH;
     public static EndlessConfig CONFIG = EndlessConfig.createAndLoad();
     public static MinecraftServer SERVER;
     @Override
     public void onInitialize() {
         LOGGER.info("The Void is endless.");
-        ServerEvents.init();
+        ServerEvents.register();
         EndlessBlocks.register();
         EndlessBlockEntities.register();
         EndlessItems.register();

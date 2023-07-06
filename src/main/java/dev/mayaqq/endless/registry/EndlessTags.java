@@ -13,4 +13,5 @@ public class EndlessTags {
     public static final TagKey<Block> ENDERGY_EXTRACTABLE = TagKey.of(RegistryKeys.BLOCK, id("endergy_extractable"));
 
     public static void register() {}
+
 }
