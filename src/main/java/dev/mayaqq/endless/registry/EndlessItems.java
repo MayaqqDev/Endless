@@ -38,9 +38,13 @@ public class EndlessItems {
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, id("endless"), ENDLESS_GROUP);
         ItemGroupEvents.modifyEntriesEvent(ENDLESS_GROUP_KEY).register(content -> {
+            boolean checked = false;
             for (Item item : Registries.ITEM) {
                 if (item.getTranslationKey().split("\\.")[1].equals("endless")) {
                     content.add(new ItemStack(item));
+                    checked = true;
+                } else if (checked) {
+                    break;
                 }
             }
         });

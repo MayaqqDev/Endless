@@ -1,0 +1,12 @@
+{
+  "block.endless.chorus_plant_root": "Chorus Root",
+  "block.endless.chorus_planks": "Chorus Planks",
+  "block.endless.makeshift_void_extractor": "Makeshift Void Extractor",
+  "block.endless.void_fluid": "Void Fluid",
+  "block.endless.corruption": "Corruption",
+
+  "item.endless.void_codex": "Void Codex",
+  "item.endless.chorus_string": "Chorus String",
+  "item.endless.chorus_string.desc": "Like String, but from Chorus Plants!",
+  "item.endless.void_fluid_bucket": "Void Fluid Bucket"
+}

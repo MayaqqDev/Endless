@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("deprecation")
 public class MakeshiftVoidExtractorBlock extends BlockWithEntity {
     public MakeshiftVoidExtractorBlock(Settings settings) {
         super(settings);

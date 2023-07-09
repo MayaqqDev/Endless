@@ -21,15 +21,18 @@ public class Endless implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("The Void is endless.");
-        ServerEvents.register();
+
+        ServerEvents.init();
+        EndlessItems.register();
         EndlessBlocks.register();
         EndlessBlockEntities.register();
-        EndlessItems.register();
         EndlessC2SPackets.register();
         EndlessFeatures.register();
         EndlessFluids.register();
         EndlessScreenHandlerTypes.register();
+        EndlessCutscenes.register();
         EndlessTags.register();
+        EndlessCommands.register();
     }
 
     public static Identifier id(String path) {

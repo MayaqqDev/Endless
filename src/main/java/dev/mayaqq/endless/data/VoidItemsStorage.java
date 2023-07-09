@@ -20,6 +20,7 @@ public class VoidItemsStorage {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(VoidItem.class, new VoidItemGsonSerializer()).create();
     public static Storage DATA = new Storage();
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void init() {
         try {
             if (!VOID_ITEMS_FILE.exists()) {
@@ -51,11 +52,13 @@ public class VoidItemsStorage {
     public static class Storage {
         public ArrayList<VoidItem> items = new ArrayList<>();
     }
+
     public static class VoidItem {
         public String item;
         public String nbt = "";
         public int count;
     }
+
     public static ItemStack toStack(VoidItem item) {
         try {
             ItemStack stack = new ItemStack(Registries.ITEM.get(new Identifier(item.item)));

@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import static dev.mayaqq.endless.Endless.MOD_ID;
 
 public class ServerEvents {
-    public static void register() {
+    public static void init() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             Endless.SERVER_DATA_PATH = Path.of(server.getSavePath(WorldSavePath.ROOT) + "/" + MOD_ID);
             VoidItemsStorage.init();

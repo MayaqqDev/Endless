@@ -1,8 +1,5 @@
 package dev.mayaqq.endless.registry;
 
-import com.terraformersmc.terraform.boat.api.TerraformBoatType;
-import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
-import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import dev.mayaqq.endless.registry.blocks.CoreConnectorBlock;
 import dev.mayaqq.endless.registry.blocks.CorruptionBlock;
@@ -40,10 +37,10 @@ public class EndlessBlocks {
     public static final Block STRIPPED_CHORUS_WOOD = registerBlock("stripped_chorus_wood", new Block(FabricBlockSettings.copy(Blocks.STRIPPED_CRIMSON_HYPHAE).mapColor(MapColor.PURPLE)));
 
     // Sign stuff
-    public static final Block CHORUS_SIGN = registerBlock("chorus_sign", new TerraformSignBlock(id("entity/signs/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.PURPLE)));
-    public static final Block CHORUS_WALL_SIGN = registerBlock("chorus_wall_sign", new TerraformSignBlock(id("entity/signs/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)));
-    public static final Block CHORUS_HANGING_SIGN = registerBlock("chorus_hanging_sign", new TerraformSignBlock(id("entity/signs/hanging/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)));
-    public static final Block CHORUS_HANGING_WALL_SIGN = registerBlock("chorus_hanging_wall_sign", new TerraformSignBlock(id("entity/signs/hanging/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)));
+    public static final Block CHORUS_SIGN = registerBlock("chorus_sign", new TerraformSignBlock(id("entity/signs/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_SIGN).mapColor(MapColor.PURPLE)), false);
+    public static final Block CHORUS_WALL_SIGN = registerBlock("chorus_wall_sign", new TerraformSignBlock(id("entity/signs/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)), false);
+    public static final Block CHORUS_HANGING_SIGN = registerBlock("chorus_hanging_sign", new TerraformSignBlock(id("entity/signs/hanging/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)), false);
+    public static final Block CHORUS_HANGING_WALL_SIGN = registerBlock("chorus_hanging_wall_sign", new TerraformSignBlock(id("entity/signs/hanging/chorus"), FabricBlockSettings.copyOf(Blocks.CRIMSON_WALL_SIGN).mapColor(MapColor.PURPLE)), false);
 
     // Not wood anymore
     public static final Block CORRUPTION = registerBlock("corruption", new CorruptionBlock(FabricBlockSettings.create().strength(0F, 0F).mapColor(MapColor.BLACK).sounds(BlockSoundGroup.SLIME)));
@@ -51,38 +48,22 @@ public class EndlessBlocks {
     public static final Block CORE_CONNECTOR = registerBlock("core_connector", new CoreConnectorBlock(FabricBlockSettings.create().strength(0.5F, 0.5F)));
 
     public static void register() {
-        registerBlockItems();
-    }
-
-    protected static void registerBlockItems() {
-        // woooooooooooooooood
-        registerItem("chorus_plant_root", new BlockItem(CHORUS_PLANT_ROOT, new FabricItemSettings()));
-        registerItem("chorus_planks", new BlockItem(CHORUS_PLANKS, new FabricItemSettings()));
-        registerItem("chorus_door", new BlockItem(CHORUS_DOOR, new FabricItemSettings()));
-        registerItem("chorus_fence", new BlockItem(CHORUS_FENCE, new FabricItemSettings()));
-        registerItem("chorus_fence_gate", new BlockItem(CHORUS_FENCE_GATE, new FabricItemSettings()));
-        registerItem("chorus_slab", new BlockItem(CHORUS_SLAB, new FabricItemSettings()));
-        registerItem("chorus_stairs", new BlockItem(CHORUS_STAIRS, new FabricItemSettings()));
-        registerItem("chorus_trapdoor", new BlockItem(CHORUS_TRAPDOOR, new FabricItemSettings()));
-        registerItem("chorus_button", new BlockItem(CHORUS_BUTTON, new FabricItemSettings()));
-        registerItem("chorus_pressure_plate", new BlockItem(CHORUS_PRESSURE_PLATE, new FabricItemSettings()));
-        registerItem("chorus_wood", new BlockItem(CHORUS_WOOD, new FabricItemSettings()));
-        registerItem("stripped_chorus_plant_root", new BlockItem(STRIPPED_CHORUS_PLANT_ROOT, new FabricItemSettings()));
-        registerItem("stripped_chorus_wood", new BlockItem(STRIPPED_CHORUS_WOOD, new FabricItemSettings()));
+        // extra care items
         registerItem("chorus_sign", new SignItem(new Item.Settings().maxCount(16), CHORUS_SIGN, CHORUS_WALL_SIGN));
         registerItem("chorus_hanging_sign", new HangingSignItem(CHORUS_HANGING_SIGN, CHORUS_HANGING_WALL_SIGN, new Item.Settings().maxCount(16)));
-
-        registerItem("makeshift_void_extractor", new BlockItem(MAKESHIFT_VOID_EXTRACTOR_BLOCK, new FabricItemSettings()));
-        registerItem("corruption", new BlockItem(CORRUPTION, new FabricItemSettings()));
-        registerItem("egg_base_generator", new BlockItem(EGG_BASE_GENERATOR, new FabricItemSettings()));
-        registerItem("core_connector", new BlockItem(CORE_CONNECTOR, new FabricItemSettings()));
     }
 
     protected static Block registerBlock(String id, Block block) {
+        registerItem(id, new BlockItem(block, new FabricItemSettings()));
         return Registry.register(Registries.BLOCK, id(id), block);
     }
 
-    private static Item registerItem(String id, Item item) {
-        return EndlessItems.registerItem(id, item);
+    protected static Block registerBlock(String id, Block block, boolean item) {
+        if (item) registerItem(id, new BlockItem(block, new FabricItemSettings()));
+        return Registry.register(Registries.BLOCK, id(id), block);
+    }
+
+    private static void registerItem(String id, Item item) {
+        EndlessItems.registerItem(id, item);
     }
 }

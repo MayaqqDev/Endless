@@ -33,6 +33,7 @@ public abstract class EntityMixin implements EntityExtension {
         }
     }
 
+    @SuppressWarnings("AddedMixinMembersNamePattern")
     @Override
     public void tickEntityVoid() {
         this.tickInVoid();

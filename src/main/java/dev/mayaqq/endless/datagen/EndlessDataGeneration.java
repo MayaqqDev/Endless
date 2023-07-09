@@ -1,6 +1,7 @@
 package dev.mayaqq.endless.datagen;
 
 import dev.mayaqq.endless.datagen.recipes.EndlessRecipeProvider;
+import dev.mayaqq.endless.datagen.translations.EndlessEnUsLangProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -12,5 +13,6 @@ public class EndlessDataGeneration implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(EndlessAdvancementsProvider::new);
         pack.addProvider(EndlessRecipeProvider::new);
+        pack.addProvider(EndlessEnUsLangProvider::new);
     }
 }
