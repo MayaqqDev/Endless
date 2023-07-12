@@ -1,7 +1,6 @@
 package dev.mayaqq.endless.mixin;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import dev.mayaqq.endless.client.api.cutscenes.Cutscene;
 import dev.mayaqq.endless.registry.EndlessCutscenes;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.PlayerAdvancementTracker;

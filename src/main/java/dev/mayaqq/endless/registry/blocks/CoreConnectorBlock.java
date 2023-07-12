@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class CoreConnectorBlock extends BlockWithEntity {
     public static final Map<Direction, BooleanProperty> CONNECTIONS;
     public static final BooleanProperty CONNECTED_TO_HEART = BooleanProperty.of("connected_to_heart");
@@ -51,6 +52,7 @@ public class CoreConnectorBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         var shape = CORE;
@@ -59,7 +61,6 @@ public class CoreConnectorBlock extends BlockWithEntity {
             if(state.get(CONNECTIONS.get(direction)))
                 shape = VoxelShapes.union(shape, SHAPES.get(direction));
         }
-
         return shape;
     }
 

@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class CoreConnectorBlockEntity extends BlockEntity implements EndergyUser {
 
     public static final Map<String, Direction> directions;
@@ -62,6 +63,7 @@ public class CoreConnectorBlockEntity extends BlockEntity implements EndergyUser
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public void updateInClientWorld() {
         world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
     }

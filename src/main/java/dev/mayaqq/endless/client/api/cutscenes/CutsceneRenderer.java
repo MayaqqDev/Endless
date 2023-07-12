@@ -51,7 +51,7 @@ public class CutsceneRenderer {
             if (cutSceneInProgress) {
                 duration++;
                 renderTick++;
-                if (renderTick == 10) {
+                if (renderTick == 5) {
                     renderTick = 0;
                 }
                 MinecraftClient client = MinecraftClient.getInstance();

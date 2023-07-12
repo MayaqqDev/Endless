@@ -4,6 +4,7 @@ import dev.mayaqq.endless.Endless;
 import dev.mayaqq.endless.registry.EndlessBlocks;
 import dev.mayaqq.endless.registry.EndlessFluids;
 import dev.mayaqq.endless.registry.EndlessTags;
+import dev.mayaqq.endless.server.ServerEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -50,7 +51,8 @@ public abstract class VoidFluid extends FlowableFluid {
             for (Direction dir : dirs) {
                 BlockPos offset = pos.offset(dir);
                 if (world.getBlockState(offset).isIn(EndlessTags.VOID_REPLACEABLE)) {
-                    world.setBlockState(offset, EndlessBlocks.CORRUPTION.getDefaultState());
+                    ServerEvents.corruptionAwaiting.add(offset);
+                    ServerEvents.corruption.put(offset, world);
                 }
             }
         }

@@ -5,6 +5,7 @@ import dev.mayaqq.endless.networking.EndlessC2SPackets;
 import dev.mayaqq.endless.registry.*;
 import dev.mayaqq.endless.server.ServerEvents;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
