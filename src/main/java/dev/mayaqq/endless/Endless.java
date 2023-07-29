@@ -32,7 +32,6 @@ public class Endless implements ModInitializer {
         EndlessFluids.register();
         EndlessScreenHandlerTypes.register();
         EndlessCutscenes.register();
-        EndlessTags.register();
         EndlessCommands.register();
     }
 

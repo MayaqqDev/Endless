@@ -37,7 +37,10 @@ repositories {
 }
 
 dependencies {
-        // Minecraft.
+    implementation 'org.jetbrains:annotations:24.0.0'
+    implementation 'org.jetbrains:annotations:24.0.0'
+
+    // Minecraft.
     minecraft ("com.mojang:minecraft:${project.minecraft_version}")
         // Yarn mappings.
     mappings ("net.fabricmc:yarn:${project.yarn_mappings}:v2")

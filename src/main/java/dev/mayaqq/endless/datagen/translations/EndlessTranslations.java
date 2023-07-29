@@ -72,7 +72,7 @@ public class EndlessTranslations {
 
         tb.add(EndlessBlocks.CORE_CONNECTOR, "Core Connector");
         tb.add(EndlessBlocks.CORRUPTION, "Corruption");
-        tb.add(EndlessBlocks.EGG_BASE_GENERATOR, "Egg Base Generator");
+        tb.add(EndlessBlocks.THE_CORE, "The Core");
 
         // fluids
         tb.add(EndlessFluids.VOID_FLUID, "Void Fluid");

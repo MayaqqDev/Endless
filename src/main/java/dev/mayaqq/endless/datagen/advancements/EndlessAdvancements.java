@@ -5,12 +5,10 @@ import dev.mayaqq.endless.registry.EndlessBlocks;
 import dev.mayaqq.endless.registry.EndlessItems;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.ImpossibleCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
 
@@ -67,7 +65,7 @@ public class EndlessAdvancements implements Consumer<Consumer<Advancement>> {
                 .parent(rootAdvancement)
                 .build(consumer, "endless:open_codex");
 
-        Advancement generateEndergy = Advancement.Builder.create().display(EndlessBlocks.EGG_BASE_GENERATOR,
+        Advancement generateEndergy = Advancement.Builder.create().display(EndlessBlocks.THE_CORE,
                 Text.translatable("advancements.endless.generate_endergy.title"),
                 Text.translatable("advancements.endless.generate_endergy.description"),
                 null,

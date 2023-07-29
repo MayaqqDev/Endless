@@ -12,10 +12,12 @@ import java.util.function.Consumer;
 
 public class EndlessRecipes {
     public static void generateRecipes(Consumer<RecipeJsonProvider> exporter) {
+        // wood
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, EndlessBlocks.CHORUS_PLANKS)
                 .input(EndlessBlocks.CHORUS_PLANT_ROOT)
                 .criterion(FabricRecipeProvider.hasItem(EndlessBlocks.CHORUS_PLANT_ROOT), FabricRecipeProvider.conditionsFromItem(EndlessBlocks.CHORUS_PLANT_ROOT))
                 .offerTo(exporter);
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, EndlessItems.CHORUS_STRING)
                 .input(Items.CHORUS_FRUIT)
                 .criterion(FabricRecipeProvider.hasItem(Items.CHORUS_FRUIT), FabricRecipeProvider.conditionsFromItem(Items.CHORUS_FRUIT))

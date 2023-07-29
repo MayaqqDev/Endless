@@ -1,7 +1,6 @@
 package dev.mayaqq.endless.registry.blockEntities;
 
 import com.google.common.collect.ImmutableMap;
-import dev.mayaqq.endless.energy.storage.EndergyUser;
 import dev.mayaqq.endless.registry.EndlessBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
-public class CoreConnectorBlockEntity extends BlockEntity implements EndergyUser {
+public class CoreConnectorBlockEntity extends BlockEntity {
 
     public static final Map<String, Direction> directions;
 
@@ -32,18 +31,7 @@ public class CoreConnectorBlockEntity extends BlockEntity implements EndergyUser
     public void readNbt(NbtCompound nbt) {
     }
 
-    @SuppressWarnings("rawtypes")
     public static void tick(World world, BlockPos pos, BlockState state, CoreConnectorBlockEntity be) {
-        for (Property property : state.getProperties()) {
-            if (property instanceof BooleanProperty booleanProperty) {
-                if (state.get(booleanProperty) && directions.containsKey(booleanProperty.getName())) {
-                    Direction direction = directions.get(booleanProperty.getName());
-                    BlockPos offsetPos = pos.offset(direction);
-                    BlockState offsetState = world.getBlockState(offsetPos);
-                    BlockEntity offsetBe = world.getBlockEntity(offsetPos);
-                }
-            }
-        }
     }
 
     @Override

@@ -1,31 +1,24 @@
 package dev.mayaqq.endless.registry.fluids;
 
-import dev.mayaqq.endless.Endless;
-import dev.mayaqq.endless.registry.EndlessBlocks;
+import dev.mayaqq.endless.datagen.tags.EndlessTags;
 import dev.mayaqq.endless.registry.EndlessFluids;
-import dev.mayaqq.endless.registry.EndlessTags;
 import dev.mayaqq.endless.server.ServerEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.LavaFluid;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.dimension.DimensionType;
-
-import java.util.ArrayList;
 
 public abstract class VoidFluid extends FlowableFluid {
     public static final Direction[] dirs = new Direction[]{Direction.DOWN, Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.UP};
@@ -50,7 +43,7 @@ public abstract class VoidFluid extends FlowableFluid {
         if (!world.getDimension().hasCeiling() && !world.getDimension().bedWorks()) {
             for (Direction dir : dirs) {
                 BlockPos offset = pos.offset(dir);
-                if (world.getBlockState(offset).isIn(EndlessTags.VOID_REPLACEABLE)) {
+                if (world.getBlockState(offset).isIn(EndlessTags.BlockTags.VOID_REPLACEABLE)) {
                     ServerEvents.corruptionAwaiting.add(offset);
                     ServerEvents.corruption.put(offset, world);
                 }

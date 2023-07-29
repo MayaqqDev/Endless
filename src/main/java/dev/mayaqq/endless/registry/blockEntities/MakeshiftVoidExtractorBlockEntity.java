@@ -32,7 +32,7 @@ import java.util.UUID;
 
 import static dev.mayaqq.endless.Endless.id;
 
-public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, EndergyUser {
+public class MakeshiftVoidExtractorBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory {
 
     public static final int INVENTORY_SIZE = 2;
     public static final int INPUT_SLOT_ID = 0;

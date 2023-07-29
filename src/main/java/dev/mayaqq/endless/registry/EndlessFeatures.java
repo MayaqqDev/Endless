@@ -1,5 +1,6 @@
 package dev.mayaqq.endless.registry;
 
+import dev.mayaqq.endless.datagen.tags.EndlessTags;
 import dev.mayaqq.endless.worldgen.features.chorusRoot.ChorusPlantRootFeatureConfig;
 import dev.mayaqq.endless.worldgen.features.chorusRoot.ChorusPlantRootFeature;
 import net.fabricmc.fabric.api.biome.v1.*;
@@ -18,6 +19,6 @@ public class EndlessFeatures {
 
     public static void register() {
         // add feature to end biomes
-        BiomeModifications.addFeature(BiomeSelectors.tag(EndlessTags.HAS_CHORUS_ROOTS), GenerationStep.Feature.UNDERGROUND_DECORATION, CHORUS_PLANT_ROOT_PLACED_FEATURE_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.tag(EndlessTags.BiomeTags.HAS_CHORUS_ROOTS), GenerationStep.Feature.UNDERGROUND_DECORATION, CHORUS_PLANT_ROOT_PLACED_FEATURE_KEY);
     }
 }

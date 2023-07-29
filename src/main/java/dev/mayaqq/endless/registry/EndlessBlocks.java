@@ -3,7 +3,7 @@ package dev.mayaqq.endless.registry;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import dev.mayaqq.endless.registry.blocks.CoreConnectorBlock;
 import dev.mayaqq.endless.registry.blocks.CorruptionBlock;
-import dev.mayaqq.endless.registry.blocks.EggBaseGeneratorBlock;
+import dev.mayaqq.endless.registry.blocks.TheCoreBlock;
 import dev.mayaqq.endless.registry.blocks.MakeshiftVoidExtractorBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -44,7 +44,7 @@ public class EndlessBlocks {
 
     // Not wood anymore
     public static final Block CORRUPTION = registerBlock("corruption", new CorruptionBlock(FabricBlockSettings.create().strength(0F, 0F).mapColor(MapColor.BLACK).sounds(BlockSoundGroup.SLIME)));
-    public static final Block EGG_BASE_GENERATOR = registerBlock("egg_base_generator", new EggBaseGeneratorBlock(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK)));
+    public static final Block THE_CORE = registerBlock("the_core", new TheCoreBlock(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK)));
     public static final Block CORE_CONNECTOR = registerBlock("core_connector", new CoreConnectorBlock(FabricBlockSettings.create().strength(0.5F, 0.5F)));
 
     public static void register() {

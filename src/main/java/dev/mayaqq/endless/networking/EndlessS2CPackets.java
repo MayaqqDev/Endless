@@ -10,13 +10,13 @@ import net.minecraft.util.Identifier;
 
 public class EndlessS2CPackets {
     public static void register() {
-        ClientPlayNetworking.registerGlobalReceiver(Endless.id("cutscenewithtext"), (client, handler, buf, responseSender) -> {
+        ClientPlayNetworking.registerGlobalReceiver(EndlessPacketIds.CUTSCENE_WITH_TEXT, (client, handler, buf, responseSender) -> {
             String message = buf.readString();
             client.execute(() -> {
                 CutsceneRenderer.renderTextCutScene(message);
             });
         });
-        ClientPlayNetworking.registerGlobalReceiver(Endless.id("cutscene"), (client, handler, buf, responseSender) -> {
+        ClientPlayNetworking.registerGlobalReceiver(EndlessPacketIds.CUTSCENE, (client, handler, buf, responseSender) -> {
             Identifier id = buf.readIdentifier();
             client.execute(() -> {
                 EndlessRegistries.CUTSCENE.get(id).play();
