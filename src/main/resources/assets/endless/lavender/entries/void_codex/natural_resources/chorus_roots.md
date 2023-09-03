@@ -13,6 +13,6 @@ The end doesn't have any trees, the only thing that resembles them are these wei
 
 ;;;;;
 
-<structure;endless:chorus_root>
+<bare_structure;endless:chorus_root>
 
 You can find them at the bottom of outer end islands! They are pretty common, just don't fall into the void.

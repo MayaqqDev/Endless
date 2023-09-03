@@ -1,10 +1,7 @@
 package dev.mayaqq.endless.registry;
 
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
-import dev.mayaqq.endless.registry.blocks.CoreConnectorBlock;
-import dev.mayaqq.endless.registry.blocks.CorruptionBlock;
-import dev.mayaqq.endless.registry.blocks.TheCoreBlock;
-import dev.mayaqq.endless.registry.blocks.MakeshiftVoidExtractorBlock;
+import dev.mayaqq.endless.registry.blocks.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -16,6 +13,9 @@ import net.minecraft.item.SignItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.structure.StructureGeneratorFactory;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.structure.Structure;
 
 import static dev.mayaqq.endless.Endless.id;
 
@@ -46,6 +46,8 @@ public class EndlessBlocks {
     public static final Block CORRUPTION = registerBlock("corruption", new CorruptionBlock(FabricBlockSettings.create().strength(0F, 0F).mapColor(MapColor.BLACK).sounds(BlockSoundGroup.SLIME)));
     public static final Block THE_CORE = registerBlock("the_core", new TheCoreBlock(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK)));
     public static final Block CORE_CONNECTOR = registerBlock("core_connector", new CoreConnectorBlock(FabricBlockSettings.create().strength(0.5F, 0.5F)));
+
+    public static final Block ENDER_GRASS = registerBlock("ender_grass", new EnderGrassBlock(FabricBlockSettings.copy(Blocks.END_STONE)));
 
     public static void register() {
         // extra care items

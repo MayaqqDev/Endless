@@ -4,6 +4,8 @@
   "package": "dev.mayaqq.endless.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ChorusFlowerBlockMixin",
+    "ChorusPlantBlockMixin",
     "DragonEggBlockMixin",
     "EnderDragonFightMixin",
     "EntityMixin"

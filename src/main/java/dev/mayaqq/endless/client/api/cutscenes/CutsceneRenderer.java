@@ -44,7 +44,7 @@ public class CutsceneRenderer {
             }
         });
         HudRenderCallback.EVENT.register((matrices, tickDelta) -> {
-            if (cutSceneBuffer.size() > 0) {
+            if (!cutSceneBuffer.isEmpty()) {
                 fullText = cutSceneBuffer.get(0);
                 cutSceneInProgress = true;
             }

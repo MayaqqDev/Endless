@@ -9,6 +9,8 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+    // mixin extras
+    maven { url 'https://jitpack.io' }
     // revelationary, Modmenu
     exclusiveContent {
         forRepository {
@@ -34,6 +36,10 @@ repositories {
         name = 'TerraformersMC'
         url = 'https://maven.terraformersmc.com/'
     }
+    // GraphLib
+    maven { url 'https://kneelawk.com/maven/' }
+    // LibMultipart (GraphLib dependency)
+    maven { url 'https://maven.alexiil.uk/' }
 }
 
 dependencies {
@@ -54,20 +60,30 @@ dependencies {
     modImplementation ("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")
         // Revelationary
     modImplementation ("maven.modrinth:revelationary:${project.revelationary_version}")
+        // Text Animator
+    modImplementation ("maven.modrinth:text-animator:${project.text_animator_version}")
         // Owo-lib
     annotationProcessor modImplementation ("io.wispforest:owo-lib:${project.owo_version}")
     include ("io.wispforest:owo-sentinel:${project.owo_version}")
         // Lavender
     include modImplementation ("io.wispforest:lavender:${project.lavender_version}")
         // Terraform wood api
-    include modImplementation("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}")
+    include modImplementation ("com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}")
 
     // Optional dependencies.
         // REI
     //modLocalRuntime ("me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version")
-        modLocalRuntime ("maven.modrinth:architectury-api:${project.architectury_version}")
+        // Architectury
+    modLocalRuntime ("maven.modrinth:architectury-api:${project.architectury_version}")
         // Modmenu
     modRuntimeOnly ("maven.modrinth:modmenu:${project.modmenu_version}")
+
+    // GraphLib
+    include modImplementation ("com.kneelawk:graphlib:${graphlib_version}")
+
+    // Mixin extras
+    implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
     // Dev Stuff
         // DevAuth

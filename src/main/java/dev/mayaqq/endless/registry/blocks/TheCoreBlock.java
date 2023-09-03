@@ -1,7 +1,6 @@
 package dev.mayaqq.endless.registry.blocks;
 
 import dev.mayaqq.endless.Endless;
-import dev.mayaqq.endless.energy.storage.EndergyUser;
 import dev.mayaqq.endless.registry.EndlessBlockEntities;
 import dev.mayaqq.endless.registry.blockEntities.TheCoreBlockEntity;
 import net.minecraft.block.Block;
@@ -21,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class TheCoreBlock extends BlockWithEntity implements EndergyUser {
+public class TheCoreBlock extends BlockWithEntity {
     public static final IntProperty LEVEL = IntProperty.of("level", 0, 3);
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
     public TheCoreBlock(Settings settings) {
@@ -51,16 +50,5 @@ public class TheCoreBlock extends BlockWithEntity implements EndergyUser {
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-
-    @Override
-    public void recheck(World world, BlockPos pos, BlockState state, ArrayList<BlockPos> ignored) {
-        if (world.isClient) return;
-        for (Direction direction : Direction.values()) {
-            BlockState neighborState = world.getBlockState(pos.offset(direction));
-            if (neighborState.getBlock() instanceof CoreConnectorBlock) {
-                world.setBlockState(pos.offset(direction), neighborState.with(CoreConnectorBlock.CONNECTED_TO_CORE, true));
-            }
-        }
     }
 }

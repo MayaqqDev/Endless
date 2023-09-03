@@ -1,14 +1,11 @@
 package dev.mayaqq.endless.registry.blocks;
 
 import com.google.common.collect.ImmutableMap;
-import dev.mayaqq.endless.energy.storage.EndergyUser;
-import dev.mayaqq.endless.registry.EndlessBlockEntities;
-import dev.mayaqq.endless.registry.blockEntities.CoreConnectorBlockEntity;
+import dev.mayaqq.endless.Endless;
+import dev.mayaqq.endless.network.node.ConnectorBlockNode;
+import dev.mayaqq.endless.network.node.EndergyNetworkBlockNode;
+import dev.mayaqq.endless.registry.blocks.base.NetworkBlock;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -19,18 +16,13 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Map;
 
-import static dev.mayaqq.endless.Endless.LOGGER;
-
 @SuppressWarnings({"unchecked", "deprecation"})
-public class CoreConnectorBlock extends BlockWithEntity implements EndergyUser {
+public class CoreConnectorBlock extends NetworkBlock {
     public static final Map<Direction, BooleanProperty> CONNECTIONS;
     public static final BooleanProperty CONNECTED_TO_CORE = BooleanProperty.of("connected_to_core");
-    public static final BooleanProperty CONNECTED_TO_ACTIVE_CORE = BooleanProperty.of("connected_to_active_core");
 
     public static final VoxelShape CORE = Block.createCuboidShape(5, 5, 5, 11, 11 ,11);
     public static final Map<Direction, VoxelShape> SHAPES;
@@ -42,9 +34,13 @@ public class CoreConnectorBlock extends BlockWithEntity implements EndergyUser {
             defaultState = defaultState.with(CONNECTIONS.get(direction), false);
         }
         defaultState = defaultState
-                .with(CONNECTED_TO_CORE, false)
-                .with(CONNECTED_TO_ACTIVE_CORE, false);
+                .with(CONNECTED_TO_CORE, false);
         this.setDefaultState(defaultState);
+    }
+
+    @Override
+    public EndergyNetworkBlockNode getNode() {
+        return ConnectorBlockNode.INSTANCE;
     }
 
     @Override
@@ -69,19 +65,6 @@ public class CoreConnectorBlock extends BlockWithEntity implements EndergyUser {
             builder.add(CONNECTIONS.get(direction));
         }
         builder.add(CONNECTED_TO_CORE);
-        builder.add(CONNECTED_TO_ACTIVE_CORE);
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CoreConnectorBlockEntity(pos, state);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, EndlessBlockEntities.CORE_CONNECTOR, CoreConnectorBlockEntity::tick);
     }
 
     @Override
@@ -92,15 +75,7 @@ public class CoreConnectorBlock extends BlockWithEntity implements EndergyUser {
             BlockPos pos = ctx.getBlockPos();
             for (Direction direction : Direction.values()) {
                 BlockState blockState = world.getBlockState(pos.offset(direction));
-                if (blockState.getBlock() instanceof EndergyUser block) {
-                    if (block instanceof TheCoreBlock) {
-                        state = state.with(CONNECTED_TO_CORE, true);
-                    }
-                    if (block instanceof CoreConnectorBlock) {
-                        if (blockState.get(CONNECTED_TO_CORE)) {
-                            state = state.with(CONNECTED_TO_CORE, true);
-                        }
-                    }
+                if (blockState.getBlock() instanceof NetworkBlock) {
                     state = state.with(CONNECTIONS.get(direction), true);
                 }
             }
@@ -108,56 +83,17 @@ public class CoreConnectorBlock extends BlockWithEntity implements EndergyUser {
         return state;
     }
 
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (!world.isClient()) {
-            if (neighborState.getBlock() instanceof EndergyUser block) {
-                state = state.with(CONNECTED_TO_CORE, false);
-                if (block instanceof TheCoreBlock) {
-                    state = state.with(CONNECTED_TO_CORE, true);
-                }
+            if (neighborState.getBlock() instanceof NetworkBlock) {
                 state = state.with(CONNECTIONS.get(direction), true);
-                if (block instanceof CoreConnectorBlock) {
-                    if (neighborState.get(CONNECTED_TO_CORE)) {
-                        state = state.with(CONNECTED_TO_CORE, true);
-                    }
-                }
             } else {
                 state = state.with(CONNECTIONS.get(direction), false);
             }
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient()) {
-            for (Direction dir : Direction.values()) {
-                if (state.get(CONNECTIONS.get(dir))) {
-                    BlockState blockState = world.getBlockState(pos.offset(dir));
-                    if (blockState.getBlock() instanceof EndergyUser block) {
-                        block.recheck(world, pos.offset(dir), blockState, new ArrayList<>());
-                    }
-                }
-            }
-        }
-
-        super.onBreak(world, pos, state, player);
-    }
-
-    @Override
-    public void recheck(World world, BlockPos pos, BlockState state, ArrayList<BlockPos> ignored) {
-        ignored.add(pos);
-        world.setBlockState(pos, state.with(CONNECTED_TO_CORE, false));
-        for (Direction dir : Direction.values()) {
-            BlockPos offset = pos.offset(dir);
-            if (world.getBlockState(offset).getBlock() instanceof EndergyUser block) {
-                if (!ignored.contains(offset)) {
-                    BlockState blockState = world.getBlockState(offset);
-                    block.recheck(world, offset, blockState, ignored);
-                }
-            }
-        }
     }
 
     static {

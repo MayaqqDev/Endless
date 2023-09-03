@@ -38,6 +38,7 @@ public class EndlessTags {
         public static final TagKey<Block> MNEABLE_AXE = TagKey.of(RegistryKeys.BLOCK, mcId("mineable/axe"));
         // endless tags
         public static final TagKey<Block> VOID_REPLACEABLE = TagKey.of(RegistryKeys.BLOCK, id("void_replaceable"));
+        public static final TagKey<Block> ENDER_GROUND = TagKey.of(RegistryKeys.BLOCK, id("ender_ground"));
 
         public BlockTags(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture) {
             super(output, registryLookupFuture);
@@ -54,6 +55,9 @@ public class EndlessTags {
             getOrCreateTagBuilder(MNEABLE_AXE)
                     .add(EndlessBlocks.CHORUS_PLANT_ROOT)
                     .add(EndlessBlocks.CHORUS_PLANKS);
+            getOrCreateTagBuilder(ENDER_GROUND)
+                    .add(Blocks.END_STONE)
+                    .add(EndlessBlocks.ENDER_GRASS);
         }
     }
 

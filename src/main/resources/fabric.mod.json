@@ -20,6 +20,9 @@
     "main": [
       "dev.mayaqq.endless.Endless"
     ],
+    "preLaunch": [
+      "dev.mayaqq.endless.Endless"
+    ],
     "fabric-datagen": [
       "dev.mayaqq.endless.datagen.EndlessDataGeneration"
     ]

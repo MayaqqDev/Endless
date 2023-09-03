@@ -14,7 +14,7 @@ public class EndlessTranslations {
 
         // cutscenes
             // when the player kills the dragon
-        tb.add("cutscene.endless.egg_reminder", "The Dragon egg seems to be emitting a strange energy...");
+        tb.add("cutscene.endless.egg_reminder", "The Dragon egg seems to be emitting a <shake>strange</shake> energy...");
         tb.add("cutscene.endless.egg_reminder2", "You should probably check it out...");
             // first click on egg
         tb.add("cutscene.endless.click_egg", "You need to find a different way to get it...");

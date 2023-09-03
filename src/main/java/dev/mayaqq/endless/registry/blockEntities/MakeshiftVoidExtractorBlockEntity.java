@@ -1,6 +1,5 @@
 package dev.mayaqq.endless.registry.blockEntities;
 
-import dev.mayaqq.endless.energy.storage.EndergyUser;
 import dev.mayaqq.endless.registry.EndlessBlockEntities;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
